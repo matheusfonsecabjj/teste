@@ -1,0 +1,122 @@
+/* Resetando alguns estilos padrões do navegador */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Corpo da página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    padding: 20px;
+}
+
+/* Container de filtro */
+.filter-container {
+    margin-bottom: 20px;
+}
+
+/* Estilo para os rótulos */
+label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+/* Estilo para os campos de entrada */
+input[type="text"] {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px;
+    margin-right: 10px;
+}
+
+/* Estilo para os botões */
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo para a tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Cabeçalhos da tabela */
+th {
+    background-color: #333;
+    color: white;
+    padding: 12px;
+    text-align: left;
+    font-weight: bold;
+}
+
+/* Células da tabela */
+td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Estilo para as linhas da tabela */
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Estilo para as ações */
+button {
+    margin-left: 10px;
+}
+
+/* Botão de excluir todos e gerar relatório */
+#btnExcluirTodos {
+    display: inline-block;
+    margin-top: 20px;
+    background-color: #dc3545;
+}
+
+#btnGerarRelatorio {
+display: inline-block;
+margin-top: 20px;
+background-color: #4caf50;
+}
+
+#btnExcluirTodos:hover {
+    background-color: #c82333;
+}
+
+#btnGerarRelatorio:hover {
+    background-color: #4caf50;
+}
+
+/* Estilo para o título */
+h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Estilo para a quantidade de produtos excluídos */
+#quantidadeExcluidos {
+    font-size: 18px;
+    margin-top: 10px;
+    color: #555;
+}

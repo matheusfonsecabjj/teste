@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Produto</title>
+    <link rel="stylesheet" type="text/css" href="logocss.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="editarcc.css" media="screen" />
+</head>
+
+<body>
+    <nav>
+        <div class="logo">
+            <img src="logo.png" alt="Logo"> <!-- Substitua 'logo.png' pelo caminho da sua imagem -->
+        </div>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="menu">
+            <a href="#home">Home</a>
+            <a href="#entrada">Entrada</a>
+            <a href="#saida">Saída</a>
+            <a href="#rank">Rank</a>
+            <a href="#mapeamento">Mapeamento</a>
+        </div>
+    </nav>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.querySelector('nav .menu');
+            menu.classList.toggle('active');
+        }
+    </script>
+
+    <h2>Editar Produto</h2>
+    <form id="formEditProduto">
+        <label for="codigo">Código</label>
+        <input type="text" id="codigo" name="codigo" required><br>
+
+        <label for="produto">Produto</label>
+        <input type="text" id="produto" name="produto" required><br>
+
+        <label for="cor">Cor</label>
+        <input type="text" id="cor" name="cor" required><br>
+
+        <label for="espessura">Espessura</label>
+        <input type="text" id="espessura" name="espessura" required><br>
+
+        <label for="peso">Peso</label>
+        <input type="text" id="peso" name="peso" required><br>
+
+        <label for="sku">SKU</label>
+        <input type="text" id="sku" name="sku" required disabled><br>
+
+        <button type="submit">Salvar Alterações</button>
+    </form>
+
+    <script>
+        // Função para carregar o produto da localStorage com base no SKU passado pela URL
+        function carregarProdutoParaEdicao() {
+            const params = new URLSearchParams(window.location.search);
+            const sku = params.get('sku');
+            const produtos = JSON.parse(localStorage.getItem('produtos')) || [];
+            const produto = produtos.find(p => p.sku === sku);
+
+            if (produto) {
+                document.getElementById('codigo').value = produto.codigo;
+                document.getElementById('produto').value = produto.produto;
+                document.getElementById('cor').value = produto.cor;
+                document.getElementById('espessura').value = produto.espessura;
+                document.getElementById('peso').value = produto.peso;
+                document.getElementById('sku').value = produto.sku;
+            } else {
+                alert('Produto não encontrado.');
+            }
+        }
+
+        // Função para salvar as alterações feitas
+        function salvarAlteracoes(event) {
+            event.preventDefault(); // Previne o comportamento padrão do formulário
+
+            const sku = document.getElementById('sku').value;
+            const produtos = JSON.parse(localStorage.getItem('produtos')) || [];
+            const produtoIndex = produtos.findIndex(p => p.sku === sku);
+
+            if (produtoIndex !== -1) {
+                produtos[produtoIndex] = {
+                    codigo: document.getElementById('codigo').value,
+                    produto: document.getElementById('produto').value,
+                    cor: document.getElementById('cor').value,
+                    espessura: document.getElementById('espessura').value,
+                    peso: document.getElementById('peso').value,
+                    sku: sku
+                };
+                localStorage.setItem('produtos', JSON.stringify(produtos));
+                alert('Produto atualizado com sucesso!');
+                // Redireciona de volta para a página de listagem
+                window.location.href = 'file:///C:/Users/Matheus%20Pinheiro/Desktop/ud/LISTAGEM/index.html';
+            }
+        }
+
+        // Carregar o produto e o formulário ao carregar a página
+        window.onload = () => {
+            carregarProdutoParaEdicao();
+            document.getElementById('formEditProduto').addEventListener('submit', salvarAlteracoes);
+        };
+    </script>
+</body>
+</html>
